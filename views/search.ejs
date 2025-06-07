@@ -1,0 +1,38 @@
+<%- include("partials/header.ejs") %>
+
+    <main class="search-main">
+        <% if(locals.content.Response === "True" && locals.content.Poster !== "N/A" ) {%>
+            <div class="search-container">
+                <div class="search-details">
+                    <img src="<%= content.Poster %>" alt="Poster" class="search-poster">
+                        <div class="search-info">
+                            <h2> <%= content.Title %> </h2>
+                            <div class="detail"><strong>Released:</strong> <%= content.Released %> </div>
+                            <div class="detail"><strong>Genre:</strong> <%= content.Genre %> </div>
+                            <div class="detail"><strong>Director:</strong> <%= content.Director %> </div>
+                            <div class="detail"><strong>Writer:</strong> <%= content.Writer %> </div>
+                            <div class="detail"><strong>Plot:</strong> <%= content.Plot %> </div>
+                            <div class="detail"><strong>Language:</strong> <%= content.Language %> </div>
+                            <div class="detail"><strong>Country:</strong> <%= content.Country %> </div>
+                            <div class="detail"><strong>Awards:</strong> <%= content.Awards %> </div>
+                            <div class="detail"><strong>Type:</strong> <%= content.Type %> </div>
+                        </div>
+                </div>
+                <div class="search-button-position">
+                    <a class="search-button" href="/create-note">Create a Note</a>  
+                </div>
+            </div>
+            
+        <% } else { %>
+            <div class="search-container">
+                <h3> Movie not found! </h3>
+                <div class="search-button-position">
+                    <a class="search-button" href="/home">Go Back</a>
+                </div>
+            </div>
+        <% } %>
+    </main>
+
+
+
+<%- include("partials/footer.ejs") %>

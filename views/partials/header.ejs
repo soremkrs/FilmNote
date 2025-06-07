@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FilmNote</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+    <label class="lbl-checkbox">
+        <div class="side-bar-container">
+            <input type="checkbox" class="slide-toggle">
+            <div class="toggle">
+                <img src="/images/Back.svg" alt="Slide bar back toggle icon">
+            </div>
+            <div class="side-bar">
+                <h1 class="side-bar-logo">FN</h1>
+                <ul>
+                    <li>
+                        <a href="/home"><img src="/images/Home.svg" alt="Home icon">Home</a>
+                    </li>
+                    <li>
+                        <a href="/your-movies"><img src="/images/Documentary.svg" alt="Video camera icon">Your Movies</a>
+                    </li>
+                    <li> 
+                        <a href="/rankings"><img src="/images/Leaderboard.svg" alt="Leaderboard icon">Rankings</a>
+                    </li>
+                    <li>
+                        <a href="/community"><img src="/images/Group.svg" alt="Community icon">Community</a>
+                    </li>
+                </ul>
+                <div class="logout">
+                    <h3> <%= user.username %> </h3>
+                    <a href="/logout">Log Out</a>
+                </div>
+                
+            </div>
+            <div class="wrapper"></div>
+        </div>
+    </label>

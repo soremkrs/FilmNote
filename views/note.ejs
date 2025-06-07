@@ -1,0 +1,33 @@
+<%- include("partials/header.ejs") %>
+
+<main class="note-main">
+    <% if (locals.content) { %>
+        <div class="note-container">
+            <div class="note-details">
+                <img src="<%= content.poster %>" alt="Poster" class="note-poster">
+                    <div class="note-info">
+                        <h2> <%= content.name %> </h2>
+                        <div class="note-content"><strong>Date of publish:</strong> <%= content.date %> </div>
+                        <div class="note-content"><strong>Author:</strong> <%= content.username %> </div>
+                        <div class="note-content"><strong>Rating:</strong> <%= content.rating %>/10 </div>
+                    </div>
+            </div>
+            <div class="note-post">
+                <p> <%= content.post %> </p>
+            </div>
+            <% if (user.username === content.username) {%>
+                <div class="note-button-position">
+                    <form  method="GET" class="note-form-box">
+                        <button class="note-button" type="submit" formaction="/edit/<%= content.id %>">Edit</button>
+                    </form> 
+                    <form  method="POST" class="note-form-box">
+                        <button class="note-button" type="submit" formaction="/delete/<%= content.id %>">Delete</button>
+                    </form>  
+                </div>
+            <% } %>
+        </div>
+    <% } %>
+</main>
+
+
+<%- include("partials/footer.ejs") %>

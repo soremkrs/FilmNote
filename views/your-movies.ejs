@@ -1,0 +1,47 @@
+<%- include("partials/header.ejs") %>
+
+    <div class="your-container-main">
+        <div class="your-container">
+            <h3> Your movies </h3>
+            <div class="order-buttons-container">
+                <% if (sort === "date") { %>
+                    <a href="/your-movies" class="order-button order-button-active">Date</a>
+                <% } else { %>
+                    <a class="order-button" href="/your-movies?sort=date">Date</a>
+                <% } %>
+                <% if (sort === "rating") { %>
+                    <a href="/your-movies" class="order-button order-button-active">Rating</a>
+                <% } else { %>
+                    <a class="order-button" href="/your-movies?sort=rating">Rating</a>
+                <% } %>
+            </div>
+            <div class="your">
+                <ol>
+                    <% if (locals.content.length > 0) {%>
+                        <% for (let i=0; i < content.length; i++) { %>
+                            <% const a = content[i];%>
+                                <li>
+                                     <a class="your-link" href="/post/<%= a.id %>"><div class="movie-card">
+                                        <img class="your-movie-poster" src="<%= a.poster %>" alt="poster">
+                                        <div class="your-movie-info">
+                                            <div class="your-title-line">
+                                                <span class="your-title"> <%= a.name %> </span>
+                                                <span class="your-year"> <%= a.date %> by <%= a.username %> </span>
+                                                <span class="your-post"> <%= a.post %> </span>
+                                            </div>
+                                        </div>
+                                        <div class="your-movie-rating">
+                                            <span> <%= a.rating %>/10 </span>
+                                        </div>
+                                     </div></a>
+                                </li>
+                        <% } %>
+                    <% } else {%>
+                        <h4> Note not found. </h4>
+                    <% } %> 
+                </ol>
+            </div>
+        </div>
+    </div>
+
+<%- include("partials/footer.ejs") %>

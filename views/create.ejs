@@ -1,0 +1,79 @@
+<%- include("partials/header.ejs") %>
+
+<main class="create-main">
+    <% if (locals.content) { %>
+        <div class="create-form-container">
+            <div class="create-movie-header">
+                <img src="<%= content.Poster %>" alt="Poster" class="create-form-poster">
+                <h2 class="create-movie-title"><%= content.Title %></h2>
+            </div>
+
+            <form action="/submit-review" method="POST" class="create-rating-form">
+                <input type="hidden" name="name" value="<%= content.Title %>">
+                <input type="hidden" name="poster" value="<%= content.Poster %>">
+                <% const monthsName = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]; %>
+                <% const monthNum = new Date().getMonth(); %>
+                <% const currentMonth = monthsName[monthNum]; %>
+                <input type="hidden" name="date" value="<%= currentMonth %> <%= new Date().getDate() %>, <%= new Date().getFullYear() %>">
+
+                <label for="user"> Author: <%= user.username %> </label>
+                <input type="hidden" id="user" name="user" value="<%= user.username %>">
+
+                <label for="post">Your Note</label>
+                <textarea id="post" name="post" maxlength="500" required></textarea>
+                <div id="char-count">0 / 500</div>
+
+
+                <label for="rating">Rating</label>
+                <select id="rating" name="rating" required>
+                <option value="" disabled selected>Select a rating</option>
+                <% for(let i = 1; i <= 10; i++) { %>
+                    <option value="<%= i %>"><%= i %></option>
+                <% } %>
+                </select>
+
+                <button type="submit" class="create-rounded-button">Submit Review</button>
+            </form>
+        </div>
+    <% } else {%>
+        <% if (user.username === edit.username) {%>
+            <div class="create-form-container">
+                <div class="create-movie-header">
+                    <img src="<%= edit.poster %>" alt="Poster" class="create-form-poster">
+                    <h2 class="create-movie-title"><%= edit.name %></h2>
+                </div>
+
+                <form action="/submit-edit/<%= edit.id %>" method="POST" class="create-rating-form">
+                    <input type="hidden" name="name" value="<%= edit.name %>">
+                    <input type="hidden" name="poster" value="<%= edit.poster %>">
+                    <% const monthsName = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]; %>
+                    <% const monthNum = new Date().getMonth(); %>
+                    <% const currentMonth = monthsName[monthNum]; %>
+                    <input type="hidden" name="date" value="<%= currentMonth %> <%= new Date().getDate() %>, <%= new Date().getFullYear() %>">
+
+                    <label for="user"> Author: <%= user.username %> </label>
+                    <input type="hidden" id="user" name="user" value="<%= user.username %>">
+
+                    <label for="post">Your Note</label>
+                    <textarea id="post" name="post" maxlength="500" required><%= edit.post %></textarea>
+                    <div id="char-count">0 / 500</div>
+
+
+                    <label for="rating">Rating</label>
+                    <select id="rating" name="rating" required>
+                    <option value="<%= edit.rating %>" selected> Your Rating was: <%= edit.rating %> </option>
+                    <% for(let i = 1; i <= 10; i++) { %>
+                        <option value="<%= i %>"><%= i %></option>
+                    <% } %>
+                    </select>
+
+                    <button type="submit" class="create-rounded-button">Edit Review</button>
+                </form>
+            </div>
+        <% } %>
+    <% } %>
+</main>
+
+
+
+<%- include("partials/footer.ejs") %>

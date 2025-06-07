@@ -1,0 +1,78 @@
+<%- include("partials/header.ejs") %>
+
+    <div class="home-page">
+        <h2>Log Every <span>Film</span>. Share Every <span>Note</span>.</h2>
+        <div class="search-bar">
+            <form class="search" action="/search" method="post">
+                <input name="name" placeholder="Search for movie..." type="text">
+                <button type="submit">Go</button>
+            </form>
+        </div>
+    </div>
+    <div class="film-scroll">
+        <% if (locals.film) {%>
+            <% for (let i=0; i < film.length; i++) { %>
+                <% const a=film[i]; if (i > 10) break; %>
+                    <div class="film-container">
+                        <a href="/post/<%= a.id %>"><img class="film-image" src="<%= a.poster %>" alt="poster"
+                                width="400" height="600"></a>
+                        <div class="film-text">
+                            <h3 class="film-name">
+                                <%= a.name %>
+                            </h3>
+                            <p class="film-rating">⭐ <%= a.rating%>/10</p>
+                        </div>
+                    </div>
+            <% } %>
+        <% } %>
+    </div>
+    <div class="bottom-container">
+        <div class="ranking-container">
+            <h3>Top 5 Best User Ranking Movies</h3>
+            <div class="ranking">
+                <ol>
+                    <% if (locals.sortByRating) {%>
+                        <% for (let i=0; i < sortByRating.length; i++) { %>
+                            <% const a=sortByRating[i]; if (i> 4) break; %>
+                                <li>
+                                     <a class="ranking-link" href="/post/<%= a.id %>"><div class="movie-card">
+                                        <img class="movie-poster" src="<%= a.poster %>" alt="poster">
+                                        <div class="movie-info">
+                                            <div class="title-line">
+                                                <span class="title"> <%= a.name %> </span>
+                                                <span class="year"> <%= a.date %> by <%= a.username %> </span>
+                                                <span class="post"> <%= a.post %> </span>
+                                            </div>
+                                        </div>
+                                        <div class="movie-rating">
+                                            <span> <%= a.rating %>/10 </span>
+                                        </div>
+                                     </div></a>
+                                </li>
+                        <% } %>
+                    <% } %>
+                </ol>
+            </div>
+        </div>
+        <div class="update-container">
+            <h3>Last Updates</h3>
+            <div class="update">
+                <ol>
+                    <% if (locals.sortByDate) {%>
+                        <% for (let i=0; i < sortByDate.length; i++) { %>
+                            <% const a=sortByDate[i]; if (i> 4) break; %>
+                                <li>
+                                    <div class="update-line">
+                                        <span class="update-date"> <%= a.date %> by <span class="update-user"> <%= a.username %> </span></span>
+                                        <span class="update-name"> <%= a.name%> </span>
+                                    </div>
+                                    
+                                </li>
+                        <% } %>
+                    <% } %>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+<%- include("partials/footer.ejs") %>

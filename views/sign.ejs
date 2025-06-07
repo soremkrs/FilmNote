@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FilmNote</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <% if (locals.message) { %>
+        <div class="signin-container">
+            <h1><span class="FN-signin">F</span>ilm <span class="FN-signin">N</span>ote</h1>
+            <p> <%= message %> </p>
+            <form  method="POST" class="form-box">
+                <input type="text" name="username" placeholder="Username" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <div class="signin-buttons">
+                    <button type="submit" formaction="/signin">Log In</button>
+                    <button type="submit" formaction="/registration">Register</button>
+                </div>
+            </form>
+        </div>
+    <% } %>
+</body>
+
+</html>
+
+

@@ -1,0 +1,20 @@
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+    const textarea = document.getElementById('post');
+    const charCount = document.getElementById('char-count');
+
+    textarea.addEventListener('input', () => {
+      const length = textarea.value.length;
+      charCount.textContent = `${length} / 500`;
+    });
+  });
+</script>  
+</body>
+<footer>
+    <hr>
+    <p>Copyright © <%= new Date().getFullYear() %> </p>
+</footer>
+
+</html>
